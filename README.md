@@ -32,10 +32,9 @@ Raspberry Pi Pico Wを使って「地震情報をリアルタイム」で表示�
 
 土台は3Dプリンタ（光造形）で作製しています。
 
-STLファイルは[case.stl](https://github.com/underMHz/pico-info-mon/blob/main/case.stl)にあります。
+STLファイルは[case.stl](hogehoge)にあります。
 
 ----
-
 
 ## 部品リスト
 
@@ -48,6 +47,7 @@ STLファイルは[case.stl](https://github.com/underMHz/pico-info-mon/blob/main
 |XHコネクタ メス|2|https://akizukidenshi.com/catalog/g/g112247/||
 |XHコネクタ オス|1-2|https://akizukidenshi.com/catalog/g/g112255/||
 |XHコネクタ コンタクト|2|https://akizukidenshi.com/catalog/g/g112264/||
+|リチウム電池（18650）|1|リンク省略|生セルでも可|
 |リチウム電池（18650）電池ボックス|1|https://akizukidenshi.com/catalog/g/g108407/||
 |電線|適宜|https://akizukidenshi.com/catalog/g/g110672/||
 |ショットキーバリアダイオードSB240LES|1|https://akizukidenshi.com/catalog/g/g107787/||
@@ -64,29 +64,53 @@ STLファイルは[case.stl](https://github.com/underMHz/pico-info-mon/blob/main
 
 ## ブロック図
 
-（工事中🔨）
+![ブロック図](img/block.png)
 
 ----
 
 ## 回路図
 
-（工事中🔨）
+![回路図](img/schematic.png)
 
 ----
 
 ## ガーバーデータ（基板発注のためのデータ）
 
-（工事中🔨）
+ガーバーデータは[ここ](https://github.com/underMHz/pico-earthquake-mon/blob/main/gerber_pico-earthquake-mon.zip)からDLできます。
 
-![ピンアサイン](img/picow_pin.png)
+[JLCPCB](https://jlcpcb.com/)での発注を想定しています。
+
+![基板](img/gerber.png)
 
 ----
 
 ## 接続
 
-（工事中🔨）
+|PicoW|OLED|74HC595|TP4056 Module|Other|
+|:--|:--|:--|:--|:--|
+|`VSYS`||`VCC`|`OUT+`||
+|`3V3`|`VCC`|`SRCLR`|||
+|`GND`|`GND`|`GND` `OE`|`OUT-`||
+|`RUN`||||`GND`|
+|`GPIO16`||`SER`|||
+|`GPIO17`||`RCLK`|||
+|`GPIO18`||`SRCLK`|||
+|`GPIO20`|`SDA`||||
+|`GPIO21`|`SCL`||||
+||||`B+`|`Li-Battery+`|
+||||`B-`|`Li-Battery-`|
+||||`Vin`|`USB+`|
+||||`GND`|`USB-`|
 
-![ピンアサイン](img/picow_pin.png)
+・GPIO10に緊急地震速報表示用のLEDを接続
+
+・GPIO11にStatus表示用のLEDを接続
+
+----
+
+## コードについて
+
+（工事中🔨）
 
 ----
 
