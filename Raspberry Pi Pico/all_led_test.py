@@ -136,5 +136,4 @@ prefectures = [
     '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'
 ]
 
-
 pref_to_led(prefectures)
