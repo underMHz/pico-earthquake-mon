@@ -128,11 +128,11 @@ Raspberry Pi Pico Wを使って「地震情報をリアルタイム」で表示�
 
 [pico-earthquake-mon/Raspberry Pi Pico/](https://github.com/underMHz/pico-earthquake-mon/tree/main/Raspberry%20Pi%20Pico)
 
-- ThonnyからPython Package Index(PyPI)からインストールするライブラリ
+- **ThonnyからPython Package Index(PyPI)からインストールするライブラリ**
 
 `ssd1306`
 
-- 外部から追加するライブラリ
+- **外部から追加するライブラリ**
 
 `uwebsocketsclient`
 https://github.com/underMHz/uwebsockets-client/blob/main/uwebsocketsclient.py
@@ -140,7 +140,7 @@ https://github.com/underMHz/uwebsockets-client/blob/main/uwebsocketsclient.py
 `P2P地震情報（https://www.p2pquake.net/）の証明書(www.p2pquake.net.crt)`
 取得方法はディレクトリ構成図の下に記載。
 
-- 使用するフォント
+- **使用するフォント**
 
 `misakifont`（美咲フォント）
 https://github.com/Tamakichi/pico_MicroPython_misakifont/tree/main/misakifont
@@ -163,7 +163,7 @@ Raspberry Pi Pico/
 └── main.py
 ```
 
-- 証明書(www.p2pquake.net.crt)の取得方法
+- **証明書の取得方法**
 
 Google Chromeでの取得方法を説明します。
 
