@@ -56,9 +56,9 @@ STLファイルは[case.stl](hogehoge)にあります。
 |緑色チップLED 1608|49|https://akizukidenshi.com/catalog/g/g111878/||
 |チップ抵抗 1/10W 3kΩ|49|https://akizukidenshi.com/catalog/g/g106302/|眩しいため6kΩ程度が望ましい|
 |細ピンヘッダ|20*2 4 6|https://akizukidenshi.com/catalog/g/g104398/|Pi Pico固定用とOLED固定用とTP4056モジュール固定用|
-|M3×35ボルト|2||基板立て用。長さは35mmでなくてもよい|
-|M3ナット|2||基板立て用|
-|はんだ|適宜||はんだ用|
+|M3×35ボルト|2|リンク省略|基板立て用。長さは35mmでなくてもよい|
+|M3ナット|2|リンク省略|基板立て用|
+|はんだ|適宜|リンク省略|はんだ用|
 
 ----
 
@@ -66,11 +66,31 @@ STLファイルは[case.stl](hogehoge)にあります。
 
 ![ブロック図](img/block.png)
 
+★Raspberry Pi Pico WをP2P地震情報とWebSocketを使い通信します。
+
+★WebSocketにConnectし、地震情報の受信を待機します。
+
+★受信した情報をパースし、OLEDに地震情報を表示します。
+
+★受信した情報をパースし、揺れた都道府県を取得し、基板上で対応するLEDを点灯させます。
+
+★47都道府県なので、LEDは47個あります。LEDの制御はシフトレジスタ（74HC595）を用います。
+
+★上記47個に加えて、緊急地震速報を示すLEDと機器の接続状況を示すLEDの2個が設定されています。
+
+★スタンドアロンで使用するため、TP4056モジュールを介してRaspberry Pi Pico WのVsysピンへ電源を供給します。
+
 ----
 
 ## 回路図
 
 ![回路図](img/schematic.png)
+
+★シフトレジスタはカスケード接続させています。
+
+★Raspberry Pi Pico WのVsysに電源供給し動作させる場合、ショットキーバリアダイオードが必須です。
+
+★ショットキーバリアダイオードは一般的なダイオード特性に加え、順方向電圧（Vf）が低い点が特徴です。
 
 ----
 
@@ -110,7 +130,18 @@ STLファイルは[case.stl](hogehoge)にあります。
 
 ## コードについて
 
+MicroPythonで開発を行っています。
+
+コードは[ここ](hogehoge)からDLできます。
+
+main.pyは以下の通り。
+
+```Python
+'''
 （工事中🔨）
+'''
+print('Hello World!')
+```
 
 ----
 
@@ -118,14 +149,15 @@ STLファイルは[case.stl](hogehoge)にあります。
 
 - ThonnyからPython Package Index(PyPI)からインストールするライブラリ
 
-`hogehoge`
+`ssd1306`
 
-`hogehoge`
+- 外部から追加するライブラリ
 
-- 外部でインストールしてから追加するライブラリ
+`uwebsocketsclient`
+https://github.com/underMHz/uwebsockets-client/blob/main/uwebsocketsclient.py
 
-`hogehoge`
-https://github.com/hogehoge/hogehoge/blob/master/hogehoge.py
+`P2P地震情報（https://www.p2pquake.net/）の証明書`
+（工事中🔨）
 
 - 使用するフォント
 
@@ -135,6 +167,15 @@ https://github.com/Tamakichi/pico_MicroPython_misakifont/tree/main/misakifont
 ❓美咲フォントについて
 https://littlelimit.net/misaki.htm
 
-（工事中🔨）
+RASPBERRY PI PICO<br>
+│&nbsp;&nbsp;main.py<br>
+│&nbsp;&nbsp;test.py<br>
+│<br>
+├─lib<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;└─ssd1306<br>
+│<br>
+└─misakifont<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（略）<br>
         
 ----
