@@ -28,11 +28,7 @@ Raspberry Pi Pico Wを使って「地震情報をリアルタイム」で表示�
 
 実際の動作の様子です。
 
-受信する地震情報についてはリアルタイムのものではなくダミー用に表示しているものです。
-
-土台は3Dプリンタ（光造形）で作製しています。
-
-STLファイルは[case.stl](hogehoge)にあります。
+(上記はテスト用で、受信する地震情報についてはリアルタイムのものではなくダミーとして表示しているものです）
 
 ----
 
@@ -130,6 +126,8 @@ STLファイルは[case.stl](hogehoge)にあります。
 
 ## ファイル構成
 
+[pico-earthquake-mon/Raspberry Pi Pico/](https://github.com/underMHz/pico-earthquake-mon/tree/main/Raspberry%20Pi%20Pico)
+
 - ThonnyからPython Package Index(PyPI)からインストールするライブラリ
 
 `ssd1306`
@@ -167,7 +165,25 @@ Raspberry Pi Pico/
 
 - 証明書(www.p2pquake.net.crt)の取得方法
 
-（工事中🔨）
+Google Chromeでの取得方法を説明します。
+
+URL横のハンバーガーメニューから「この接続は保護されています」をクリックします。
+
+![証明書の取得方法-1](img/CRT-1.png)
+
+次に「証明書は有効です」をクリックします。
+
+下画像のようなポップアップが表示されるので、「詳細」タブをクリックします。
+
+そして右下の「エクスポート(X)」をクリックします。
+
+![証明書の取得方法-2](img/CRT-2.png)
+
+「Base64 エンコード～証明書チェーン」として保存します。拡張子は「.crt」です。
+
+![証明書の取得方法-3](img/CRT-3.png)
+
+ダウンロードしたcrtファイルをThonnyを使って「Raspberry Pi Pico/lib」にアップロードします。
 
 ----
 
@@ -175,7 +191,7 @@ Raspberry Pi Pico/
 
 MicroPythonで開発を行っています。
 
-コードは[ここ](hogehoge)からDLできます。
+コードは[ここ](https://github.com/underMHz/pico-earthquake-mon/tree/main/Raspberry%20Pi%20Pico)からDLできます。
 
 main.pyは以下の通り。
 
