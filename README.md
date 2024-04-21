@@ -591,8 +591,8 @@ functions for getting earthquake information using Websocket
 '''
 websocket = connect(uri)
  
-try:
-    while True:
+while True:
+    try:
         data = websocket.recv()
         data = json.loads(data)
         
@@ -602,7 +602,7 @@ try:
         if code == 556:
             # ON alertLED
             alert_led.on()                
-            time = data['earthquake']['arrivalTime']
+            arrival_time = data['earthquake']['arrivalTime']
             # No data -> max_scale = data['earthquake']['maxScale']
             max_scale = '!'
             magnitude = data['earthquake']['hypocenter']['magnitude']
@@ -622,8 +622,8 @@ try:
 
             depth = f'（深さ：{depth}㎞）'
             
-            date = time.split()[0]
-            time = time.split()[1]
+            arrival_date = arrival_time.split()[0]
+            arrival_time = arrival_time.split()[1]
             
             oled.fill(0)
             oled.show()
@@ -633,8 +633,8 @@ try:
             seismic_magnitude(magnitude)
             happen_depth(depth)
             happen_location(location)
-            happen_date(date)
-            happen_time(time)
+            happen_date(arrival_date)
+            happen_time(arrival_time)
             make_frame()
             oled.show()
             
@@ -645,7 +645,7 @@ try:
         elif code == 551:
             # Reset alertLED
             alert_led.off() 
-            time = data['earthquake']['time']
+            occurrence_time = data['earthquake']['time']
             max_scale = data['earthquake']['maxScale']
             magnitude = data['earthquake']['hypocenter']['magnitude']
             depth = data['earthquake']['hypocenter']['depth']
@@ -667,8 +667,8 @@ try:
 
             depth = f'（深さ：{depth}㎞）'
             
-            date = time.split()[0]
-            time = time.split()[1]
+            occurrence_date = occurrence_time.split()[0]
+            occurrence_time = occurrence_time.split()[1]
             
             oled.fill(0)
             oled.show()
@@ -678,8 +678,8 @@ try:
             seismic_magnitude(magnitude)
             happen_depth(depth)
             happen_location(location)
-            happen_date(date)
-            happen_time(time)
+            happen_date(occurrence_date)
+            happen_time(occurrence_time)
             make_frame()
             oled.show()
             
@@ -697,15 +697,12 @@ try:
             status_led.off()
             time.sleep(0.5)
             
-except Exception as e:
-    status_led.on()
-    oled.fill(0)
-    oled.show()
-    show_text(f'Error:{e}', 0, 0, 1, 128)
+    except Exception as e:
+        status_led.on()
+        oled.fill(0)
+        oled.show()
+        show_text(f'Error:{e}', 0, 0, 1, 128)
 
-finally:
-    # Close WebSocket
-    websocket.close()
 ```
 
 ----
