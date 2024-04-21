@@ -30,6 +30,10 @@ Raspberry Pi Pico Wを使って「地震情報をリアルタイム」で表示�
 
 (上記はテスト用で、受信する地震情報についてはリアルタイムのものではなくダミーとして表示しているものです）
 
+3Dプリンタ（光造形）で作製するスタンドもアップロードしています。
+
+STLファイルは[stand_pico-earthquake-mon.stl](https://github.com/underMHz/pico-earthquake-mon/blob/main/stand_pico-earthquake-mon.stl)にあります。
+
 ----
 
 ## 部品リスト
